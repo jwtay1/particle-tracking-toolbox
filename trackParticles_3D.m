@@ -9,9 +9,9 @@ vid = VideoWriter('3Dtrack.avi');
 vid.FrameRate = 5;
 open(vid);
 
-reader = BioformatsImage('230724PIVPilot2001.nd2');
+reader = BioformatsImage('../data/230724PIVPilot2001.nd2');
 
-zRange = 50:75;
+zRange = 1:reader.sizeZ;
 
 h = figure('units','normalized','outerposition',[0 0 1 1]);
 
@@ -63,7 +63,11 @@ end
 
 close(vid)
 
+%Save data
+tracks = L.tracks;
 
+save('20230911_3D_full_230828_10wt_PIV.mat', 'tracks')
+export(tracks, '20230911_3D_full_230828_10wt_PIV.csv')
 
 
 
